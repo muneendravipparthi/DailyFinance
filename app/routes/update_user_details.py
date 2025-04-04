@@ -6,8 +6,10 @@ from utils import token_required
 update_user_details = Blueprint('update_user_details', __name__)
 
 @update_user_details.route('/updateUser', methods=['PUT'])
-@token_required  # Custom decorator for token validation
-def update_user(current_user_id):
+@jwt_required()  # Custom decorator for token validation
+def update_user():
+    # Retrieve the user ID (or identity) stored in the token
+    current_user_id = get_jwt_identity()
     data = request.json
 
     # Validate request payload
@@ -16,7 +18,7 @@ def update_user(current_user_id):
 
     try:
         # Query the user by ID
-        user = User.query.filter_by(id=current_user_id).first()
+        user = User.query.filter_by(email=current_user_id).first()
         if not user:
             return jsonify({'message': 'User not found'}), 404
 
