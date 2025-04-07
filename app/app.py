@@ -4,8 +4,9 @@ from flask_cors import CORS
 from config import Config
 from models import db
 from flask_jwt_extended import JWTManager
+from flask_swagger_ui import get_swaggerui_blueprint
 
-app = Flask(__name__)
+app = Flask(__name__,static_folder='static')
 CORS(app)
 app.config.from_object(Config)
 # db = SQLAlchemy()
@@ -18,6 +19,12 @@ app.config['JWT_SECRET_KEY'] = 'your_secret_key'  # Replace with your actual sec
 app.config['JWT_TOKEN_LOCATION'] = ['headers']   # Specify token location (e.g., headers or cookies)
 
 jwt = JWTManager(app)
+
+SWAGGER_URL = '/swagger'  # Swagger UI URL
+API_URL = '/static/swagger.yaml' # Path to Swagger file
+
+swaggerui_blueprint = get_swaggerui_blueprint(SWAGGER_URL, API_URL)
+app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
 # Import and register Blueprints
 from routes.signup import signup

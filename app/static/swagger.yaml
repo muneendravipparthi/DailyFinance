@@ -1,0 +1,149 @@
+openapi: 3.0.0
+info:
+  title: Daily Finance Service
+  version: 1.0.0
+  description: API documentation for my Daily Finance Service Application
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+paths:
+  /register:
+    post:
+      summary: End point to register into the Daily Finance application
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstname:
+                  type: string
+                lastname:
+                  type: string
+                email:
+                  type: string
+                phone:
+                  type: string
+                password:
+                  type: string
+      responses:
+        201:
+          description: User registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /login:
+    post:
+      summary: Login into the application
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        200:
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  message:
+                    type: string
+
+  /dashboard:
+    get:
+      security:
+        - BearerAuth: []
+      summary: Dashboard
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /customers:
+    get:
+      security:
+        - BearerAuth: []
+      summary: Dashboard
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: list
+                properties:
+                  list:
+                    type: list
+
+  /createCustomer:
+    post:
+      security:
+        - BearerAuth: [ ]
+      summary: End point to Create a customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                mobile:
+                  type: string
+                contact_1:
+                  type: string
+                contact_2:
+                  type: string
+                aadhar_number:
+                  type: string
+                home_address:
+                  type: string
+                business_address:
+                  type: string
+                occupation:
+                  type: string
+                rating:
+                  type: string
+      responses:
+        201:
+          description: User registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer_id:
+                    type: integer
+                  message:
+                    type: string
+
+security:
+  - BearerAuth: []
