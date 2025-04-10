@@ -4,7 +4,7 @@ from models import Transaction, User, db
 
 account_service = Blueprint('account_service', __name__)
 
-@account_service.route('/account/overview', methods=['GET'])
+@account_service.route('/api/v1/account/overview', methods=['GET'])
 @jwt_required()
 def get_account_overview():
     try:

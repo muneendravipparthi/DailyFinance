@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 
 finance_service = Blueprint('finance_service', __name__)
 
-@finance_service.route('/finance', methods=['POST'])
+@finance_service.route('/api/v1/finance', methods=['POST'])
 @jwt_required()
 def create_finance():
     data = request.json

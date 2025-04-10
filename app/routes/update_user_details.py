@@ -5,7 +5,7 @@ from utils import token_required
 
 update_user_details = Blueprint('update_user_details', __name__)
 
-@update_user_details.route('/updateUser', methods=['PUT'])
+@update_user_details.route('/api/v1/updateUser', methods=['PUT'])
 @jwt_required()  # Custom decorator for token validation
 def update_user():
     # Retrieve the user ID (or identity) stored in the token

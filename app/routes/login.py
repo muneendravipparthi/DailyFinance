@@ -5,7 +5,7 @@ from werkzeug.security import check_password_hash
 
 login = Blueprint('login', __name__)
 
-@login.route('/login', methods=['POST'])
+@login.route('/api/v1/login', methods=['POST'])
 def login_user():
     data = request.json
     try:

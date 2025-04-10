@@ -10,7 +10,7 @@ components:
       scheme: bearer
       bearerFormat: JWT
 paths:
-  /register:
+  /api/v1/register:
     post:
       summary: End point to register into the Daily Finance application
       requestBody:
@@ -41,7 +41,7 @@ paths:
                   message:
                     type: string
 
-  /login:
+  /api/v1/login:
     post:
       summary: Login into the application
       requestBody:
@@ -68,7 +68,7 @@ paths:
                   message:
                     type: string
 
-  /dashboard:
+  /api/v1/dashboard:
     get:
       security:
         - BearerAuth: []
@@ -84,7 +84,7 @@ paths:
                   message:
                     type: string
 
-  /customers:
+  /api/v1/customers:
     get:
       security:
         - BearerAuth: []
@@ -100,7 +100,7 @@ paths:
                   list:
                     type: list
 
-  /createCustomer:
+  /api/v1/createCustomer:
     post:
       security:
         - BearerAuth: [ ]

@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 change_password_service = Blueprint('change_password_service', __name__)
 
-@change_password_service.route('/changePassword', methods=['POST'])
+@change_password_service.route('/api/v1/changePassword', methods=['POST'])
 @jwt_required()  # Requires authentication
 def change_password():
     data = request.json

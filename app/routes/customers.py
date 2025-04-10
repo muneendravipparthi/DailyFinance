@@ -4,7 +4,7 @@ from models import Customer, db
 
 customers = Blueprint('customers', __name__)
 # Get All Customer
-@customers.route('/customers', methods=['GET'])
+@customers.route('/api/v1/customers', methods=['GET'])
 @jwt_required()  # Requires authentication
 def get_all_customers():
     user_id = get_jwt_identity()  # Retrieve the logged-in user's ID
@@ -40,7 +40,7 @@ def get_all_customers():
         return jsonify({'error': f'Internal server error: {str(e)}'}), 500
 
 # Create Customer
-@customers.route('/createCustomer', methods=['POST'])
+@customers.route('/api/v1/createCustomer', methods=['POST'])
 @jwt_required()
 def create_customer():
     data = request.json
@@ -77,7 +77,7 @@ def create_customer():
         return jsonify({'error': f'Internal server error: {str(e)}'}), 500
 
 # Read Customer
-@customers.route('/customer/<int:id>', methods=['GET'])
+@customers.route('/api/v1/customer/<int:id>', methods=['GET'])
 @jwt_required()
 def get_customer(id):
     user_id = get_jwt_identity()  # Get logged-in user's ID
@@ -101,7 +101,7 @@ def get_customer(id):
     }), 200
 
 # Update Customer
-@customers.route('/UpdateCustomer/<int:id>', methods=['PUT'])
+@customers.route('/api/v1/UpdateCustomer/<int:id>', methods=['PUT'])
 @jwt_required()
 def update_customer(id):
     data = request.json
@@ -143,7 +143,7 @@ def update_customer(id):
         return jsonify({'error': f'Internal server error: {str(e)}'}), 500
 
 # Delete Customer
-@customers.route('/DeleteCustomer/<int:id>', methods=['DELETE'])
+@customers.route('/api/v1/DeleteCustomer/<int:id>', methods=['DELETE'])
 @jwt_required()
 def delete_customer(id):
     user_id = get_jwt_identity()  # Get logged-in user's ID

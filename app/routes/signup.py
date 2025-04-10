@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash
 
 signup = Blueprint('signup', __name__)
 
-@signup.route('/register', methods=['POST'])
+@signup.route('/api/v1/register', methods=['POST'])
 def register_user():
     data = request.json
     try:
