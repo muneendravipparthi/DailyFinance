@@ -35,6 +35,8 @@ from routes.change_password_service import change_password_service
 from routes.customers import customers
 from routes.account_service import account_service
 from routes.finance_service import finance_service
+from routes.financing_service import financing_service
+from routes.installmentDetails_service import installmentDetails_service
 
 app.register_blueprint(signup)
 app.register_blueprint(login)
@@ -44,6 +46,8 @@ app.register_blueprint(change_password_service)
 app.register_blueprint(customers)
 app.register_blueprint(account_service)
 app.register_blueprint(finance_service)
+app.register_blueprint(financing_service)
+app.register_blueprint(installmentDetails_service)
 
 if __name__ == "__main__":
     with app.app_context():

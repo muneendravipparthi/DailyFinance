@@ -61,3 +61,25 @@ class Account(db.Model):
     circulating_amount = db.Column(db.Float, nullable=False)  # Total circulating amount
     amount_to_be_collected = db.Column(db.Float, nullable=False)  # Unpaid installment amounts
     amount_to_be_deducted = db.Column(db.Float, nullable=False)  # Deduction amount
+
+class Finance(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=False)
+    finance_amount = db.Column(db.Float, nullable=False)
+    start_date = db.Column(db.Date, nullable=False)
+    end_date = db.Column(db.Date, nullable=False)
+    finance_type = db.Column(db.String(20), nullable=False)
+    collection_time = db.Column(db.String(10))
+    interest_rate = db.Column(db.Float, nullable=False)
+    status = db.Column(db.String(20), default="Active")
+
+    # Installments Model
+
+
+class Installment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    finance_id = db.Column(db.Integer, db.ForeignKey('finance.id'), nullable=False)
+    due_date = db.Column(db.Date, nullable=False)
+    amount = db.Column(db.Float, nullable=False)
+    status = db.Column(db.String(20), default="Pending")
+
